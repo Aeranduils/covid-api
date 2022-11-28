@@ -3,17 +3,40 @@ package org.polytech.covidapi.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Patient {
     @Id
     private Integer id;
+
+    // Un patient à une seul et unique adresse
+    @OneToOne(cascade = {})
+    @JoinColumn(
+        name = "id_address",
+        foreignKey = @ForeignKey(name = "address_fk"),
+        nullable = false)
+    private String address;
+
+    // Plusieurs patient ont le même docteur, 1:n bidirectionelle
+    @ManyToOne
+    private Doctor doctor;
+
+    @ManyToMany
+    private List<Vaccine> vaccines;
+
+
+
     private String firstName;
     private String lastName;
-    private String address;
     private String postalCode;
     private String city;
     private Date birthDate;
