@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VaccinationCenterRepository 
     extends JpaRepository<VaccinationCenter,Integer>{
-    //@Query("")    
+    @Query("")    
     List<VaccinationCenter> findAllByCityLike(String city);
     
 }
