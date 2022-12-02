@@ -20,11 +20,11 @@ public class Patient {
 
     // Un patient à une seul et unique adresse
     @OneToOne(cascade = {})
-    @JoinColumn(
+    /*@JoinColumn(
         name = "id_address",
         foreignKey = @ForeignKey(name = "address_fk"),
-        nullable = false)
-    private String address;
+        nullable = false)*/
+    private Address address;
 
     // Plusieurs patient ont le même docteur, 1:n bidirectionelle
     @ManyToOne
@@ -32,8 +32,6 @@ public class Patient {
 
     @ManyToMany
     private List<Vaccine> vaccines;
-
-
 
     private String firstName;
     private String lastName;
@@ -63,12 +61,8 @@ public class Patient {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public String getAddress() {
-        return address;
-    }
-    public void setAddress(String address) {
-        this.address = address;
-    }
+   
+    
     public String getPostalCode() {
         return postalCode;
     }

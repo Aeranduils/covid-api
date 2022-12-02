@@ -17,8 +17,6 @@ import org.springframework.util.StringUtils;
 @Service
 public class PatientService {
 
-
-   
     private final PatientRepository patientRepository;
 
 
@@ -27,23 +25,8 @@ public class PatientService {
         this.patientRepository = patientRepository;
     }
 
-    @Qualifier("serializationStore")
-    private PatientStore store;
-
     public void savePatient(Patient aPatient){
     }
-
-    @Bean
-    public PatientStore databaseStore(){
-        return new PatientDataBase();
-    }
-
-    @Bean
-    public PatientStore serializStore(){
-        return new PatientSerialization();
-    }
-
-    
 
     public Patient save(Patient patient) throws Exception{
         if (!StringUtils.hasText(patient.getEmail())){

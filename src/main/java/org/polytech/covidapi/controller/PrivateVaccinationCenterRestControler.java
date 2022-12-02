@@ -15,7 +15,7 @@ public class PrivateVaccinationCenterRestControler
     @Autowired
     private VaccinationCenterRepository centerRepository;
 
-    @GetMapping(path="api/private/center")
+    @GetMapping(path="api/private/centers")
      public List<VaccinationCenter> getVaccinatedCenter(@RequestParam("city") String city)
      {
          //return centerRepository.findAllByCityLike("%"+city+"%");
