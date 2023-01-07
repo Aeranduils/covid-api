@@ -1,0 +1,66 @@
+<div>
+    <h2>Liste des centres de vaccinations</h2>
+
+    <ul>
+        <!-- 
+        ngFor: répète l’élément sur lequel elle est positionnée pour tous
+        les éléments de la liste.
+        “let aCenter of centers” permet de définir une variable local à la boucle (aCenter)
+        -->
+        <li *ngFor="let aCenter of centers"
+        [ngClass]="selected==aCenter ? 'selected' : ''">
+            <!--  ngClass permet d’ajouter ou de retirer une classe css à un composant ou un élément du DOM -->
+            <!-- ngStyle permet de mettre à jour une ou plusieurs propriétés de style CSS -->
+            <button
+            [ngStyle]="{'font-weight' : isSpecialCenter(aCenter) ? 'bold' : 'normal'}"
+            (click)="selectCenter(aCenter)">
+
+            {{aCenter.name}}       
+            </button>
+        </li>
+    </ul>
+  
+        <!-- 
+        Le parent s’abonne aux événements de l’enfant via un Event Binding (nom-evenement).
+        Angular passe l’événement via $event à la méthode du parent 
+        -->
+        <app-vaccination-center [center]="selected"
+            (deleted)="onDeleted($event)"  >
+        </app-vaccination-center>
+</div>
+
+        <!--  
+        ngIf permet d’ajouter ou retirer des éléments
+        (Dispose les composants, libération de la mémoire et des ressources)
+        -->
+        <!-- <div *ngIf="selected"  class="detail">
+            <h2>{{selected.name | uppercase}}</h2>
+            <div>{{selected.address | lowercase}}
+                <span> {{selected.postalCode}} {{selected.city}}</span>
+            </div>
+            <div>
+                Ouvert depuis le {{selected.openingDate | date:'dd/MM/Y'}} 
+            </div>
+        </div> -->
+       
+
+    
+   
+
+
+  <!--
+    <div>
+     <h2 [title]="center.name">{{center.name | uppercase}}</h2> 
+    <div>
+          {{center.adress}}
+        <span>{{center.postalCode}} {{center.city}}</span>
+    </div> 
+    <div>
+     <button (click)="clearName()">Clear Name</button> <br />
+
+    <label for="name">Nom du centre:</label>
+    <input id="name" [(ngModel)]="center.name" /> 
+    </div>
+    -->
+
+
