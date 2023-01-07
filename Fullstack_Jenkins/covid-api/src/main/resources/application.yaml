@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: ${DB_COVID_API}
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+  jpa:
+      database-platform: ${MYSQL_DATABASE}
+      open-in-view: false
+      show-sql: true
+      hibernate.ddl-auto: update
+  liquibase:
+    enabled: false
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
